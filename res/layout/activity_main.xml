@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:horizontalflowchart="http://schemas.android.com/apk/res/com.example.horizontalflowchart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.example.horizontalflowchart.HorizontalFlowChartView
+        android:id="@+id/horizontalflowchart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp" 
+        horizontalflowchart:circle_sum="4"
+        horizontalflowchart:big_circle_radius="30dp"
+        horizontalflowchart:small_circle_radius="25dp"
+        horizontalflowchart:big_line_width="33dp"
+        horizontalflowchart:big_line_height="10dp"
+        horizontalflowchart:small_line_height="5dp"
+        horizontalflowchart:has_text="true"
+		horizontalflowchart:text_size="12sp"
+		horizontalflowchart:loading_rate="15"
+        />
+
+</RelativeLayout>

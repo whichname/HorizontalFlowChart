@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <declare-styleable name="HorizontalFlowChartView">
+        <attr name="circle_sum" format="integer"/>
+        <attr name="big_circle_radius" format="dimension|reference"/>
+        <attr name="small_circle_radius" format="dimension|reference"/>
+        <attr name="big_line_width" format="dimension|reference"/>
+        <attr name="big_line_height" format="dimension|reference"/>
+        <attr name="small_line_height" format="dimension|reference"/>
+        <attr name="big_color" format="color|reference"/>
+        <attr name="small_color" format="color|reference"/>
+        <attr name="has_text" format="boolean"/>
+        <attr name="text_color" format="color|reference"/>
+        <attr name="text_size" format="dimension|reference"/>
+        <attr name="touch_circle_color" format="color|reference"/>
+		<attr name="loading_rate" format="integer"/>        
+    </declare-styleable>
+    
+</resources>
