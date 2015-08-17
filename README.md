@@ -107,7 +107,8 @@ public interface OnTouchCircleListener {
 <br>
 ####:email: wzm625278436@qq.com
 <br>
-###:smile::smile::smile:Thanks for your read!!!:smile::smile::smile:
+###:smile::smile::smile:Thanks for your reading!!!:smile::smile::smile:
+###:smile::smile::smile:Welcome to Star or Fork!!!:smile::smile::smile:
 <br>
 <br>
 ##### @author by wuzhiming(whichname)
