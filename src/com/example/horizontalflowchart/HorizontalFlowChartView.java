@@ -43,6 +43,19 @@ public class HorizontalFlowChartView extends View {
 	//默认动画速率
 	private final int DEFAULT_LOADING_RATE = 0;
 	
+	//默认文本布局
+	private final int DEFAULT_TEXT_GRAVITY = 0;
+	
+	//文本布局，文本在圆内
+	private final int TEXT_GRAVITY_CENTER = 0;
+	//文本布局，文本在圆下
+	private final int TEXT_GRAVITY_BOTTOM = 1;
+	//文本布局，文本在圆上
+	private final int TEXT_GRAVITY_TOP = 2;
+	
+	//默认文本偏移
+	private final int DEFAULT_TEXT_OFFSET = 5;
+	
 
 	// 外圆半径
 	private int mBigCircleRadius;
@@ -59,6 +72,9 @@ public class HorizontalFlowChartView extends View {
 
 	// 圆的数量
 	private int mCircleSum;
+	
+	//圆心的y轴坐标
+	private float mCircleY;
 
 	// 外圆（外线）的颜色
 	private int mBigColor;
@@ -91,6 +107,12 @@ public class HorizontalFlowChartView extends View {
 	private int mTextSize;
 	// 文本字体颜色
 	private int mTextColor;
+	//文本布局
+	private int mTextGravity;
+	//文本偏移
+	private int mTextOffset;
+	//文本的Y轴坐标
+	private float mTextY;;
 
 	// 触摸事件中，圆的顺序
 	private int mTouchCircle = -1;
@@ -149,23 +171,54 @@ public class HorizontalFlowChartView extends View {
 		mRealHeight = getMeasuredHeight() - getPaddingTop()
 				- getPaddingBottom();
 
-		// 以该view的大小以及圆的数量获得默认的外圆半径（外线长度）
-		if(mBigCircleRadius == -1)
-		mBigCircleRadius = Math.min(mRealWidth / (3 * mCircleSum - 1),
-				mRealHeight / 2);
+		mPaint.setTextSize(mTextSize);
+		
+		
+		//圆心的Y轴坐标
+		switch(mTextGravity)
+		{
+		case TEXT_GRAVITY_CENTER:
+			// 以该view的大小以及圆的数量获得默认的外圆半径
+			if(mBigCircleRadius == -1)
+			mBigCircleRadius = Math.min(mRealWidth / (3 * mCircleSum-1),
+					mRealHeight / 2);
+			//获得圆心Y轴
+			mCircleY = getPaddingTop() + mBigCircleRadius;
+			mTextY = mCircleY- (mPaint.descent() - mPaint.ascent()) / 2;
+			break;
+		case TEXT_GRAVITY_BOTTOM:
+			//以该view的大小以及圆的数量和文本偏移获得默认的外圆半径
+			if(mBigCircleRadius == -1)
+				mBigCircleRadius = (int) Math.min(mRealWidth/(3*mCircleSum-1), (mRealHeight-(mPaint.descent() - mPaint.ascent())-mTextOffset)/2);
+			//获得圆心坐标
+			mCircleY = getPaddingTop() + mBigCircleRadius;
+			mTextY = mCircleY + mBigCircleRadius +mTextOffset +(mPaint.descent() - mPaint.ascent())/2 ;
+			break;
+		case TEXT_GRAVITY_TOP:
+			//以该view的大小以及圆的数量和文本偏移获得默认的外圆半径
+			if(mBigCircleRadius == -1)
+				mBigCircleRadius = (int) Math.min(mRealWidth/(3*mCircleSum-1), (mRealHeight-(mPaint.descent() - mPaint.ascent())-mTextOffset)/2);
+			//获得圆心坐标
+			mCircleY = getPaddingTop() + mTextOffset + (mPaint.descent() - mPaint.ascent())+mBigCircleRadius;
+			mTextY = getPaddingTop() + (mPaint.descent()-mPaint.ascent())/2;
+			break;
+		}
+		
+		
+		//外线长度
 		if(mBigLineWidth == -1)
-		mBigLineWidth = mBigCircleRadius;
-
+			mBigLineWidth = (mRealWidth-mCircleSum*2*mBigCircleRadius)/(mCircleSum-1);
+		
 		// 以外圆半径的4/5作为默认内圆半径
-		if(mSmallCircleRadius == -1)
-		mSmallCircleRadius = mBigCircleRadius * 4 / 5;
+				if(mSmallCircleRadius == -1)
+				mSmallCircleRadius = mBigCircleRadius * 4 / 5;
 
-		// 获得默认内线长度
-		mSmallLineWidth = mBigLineWidth + 2
-				* (mBigCircleRadius - mSmallCircleRadius);
+				// 获得默认内线长度
+				mSmallLineWidth = mBigLineWidth + 2
+						* (mBigCircleRadius - mSmallCircleRadius);
 
-		// 当前进度的最大值
-		mMaxProgress = 180 * mCircleSum + mSmallLineWidth * (mCircleSum - 1);
+				// 当前进度的最大值
+				mMaxProgress = 180 * mCircleSum + mSmallLineWidth * (mCircleSum - 1);
 		
 	}
 	
@@ -190,10 +243,13 @@ public class HorizontalFlowChartView extends View {
 		
 		mHasText = typedArray.getBoolean(R.styleable.HorizontalFlowChartView_has_text, DEFAULT_HAS_TEXT);
 		mTextColor = typedArray.getColor(R.styleable.HorizontalFlowChartView_text_color, DEFAULT_TEXT_COLOR);
-		mTextSize = (int) typedArray.getDimension(R.styleable.HorizontalFlowChartView_text_size, sp2px(DEFAULT_TEXT_SIZE));		
+		mTextSize = (int) typedArray.getDimension(R.styleable.HorizontalFlowChartView_text_size, sp2px(DEFAULT_TEXT_SIZE));	
 		
 		mTouchCircleColor = typedArray.getColor(R.styleable.HorizontalFlowChartView_touch_circle_color, DEFAULT_TOUCH_CIRCLE_COLOR);
-		mLoadingRate = (int) typedArray.getInteger(R.styleable.HorizontalFlowChartView_loading_rate, DEFAULT_LOADING_RATE);
+		mLoadingRate = typedArray.getInteger(R.styleable.HorizontalFlowChartView_loading_rate, DEFAULT_LOADING_RATE);
+		
+		mTextGravity = typedArray.getInteger(R.styleable.HorizontalFlowChartView_text_gravity, DEFAULT_TEXT_GRAVITY);
+		mTextOffset = (int) typedArray.getDimension(R.styleable.HorizontalFlowChartView_text_offset, dp2px(DEFAULT_TEXT_OFFSET));
 		
 		typedArray.recycle();
 	}
@@ -230,17 +286,15 @@ public class HorizontalFlowChartView extends View {
 
 			canvas.drawCircle(getPaddingLeft() + i * 2 * mBigCircleRadius
 					- mBigCircleRadius + (i - 1) * mBigLineWidth,
-					getPaddingTop() + mBigCircleRadius, mBigCircleRadius,
+					mCircleY, mBigCircleRadius,
 					mPaint);
 		}
 		mPaint.setColor(mBigColor);
 		// 画线
 		for (int i = 1; i < mCircleSum; i++)
 			canvas.drawLine(getPaddingLeft() + i * 2 * mBigCircleRadius
-					+ (i - 1) * mBigLineWidth-1, getPaddingTop()
-					+ mBigCircleRadius, getPaddingLeft() + i * 2
-					* mBigCircleRadius + i * mBigLineWidth+1, getPaddingTop()
-					+ mBigCircleRadius, mPaint);
+					+ (i - 1) * mBigLineWidth-1, mCircleY, getPaddingLeft() + i * 2
+					* mBigCircleRadius + i * mBigLineWidth+1, mCircleY, mPaint);
 	}
 
 	// 绘制内围函数
@@ -264,16 +318,13 @@ public class HorizontalFlowChartView extends View {
 			for (int i = 0; i < mFinish; i++) {
 				// 画圆
 				canvas.drawCircle(getPaddingLeft() + (i * 2 + 1)
-						* mBigCircleRadius + i * mBigLineWidth, getPaddingTop()
-						+ mBigCircleRadius, mSmallCircleRadius, mPaint);
+						* mBigCircleRadius + i * mBigLineWidth, mCircleY, mSmallCircleRadius, mPaint);
 				// 画线
 				canvas.drawLine(getPaddingLeft() + (i * 2 + 1)
 						* mBigCircleRadius + i * mBigLineWidth
-						+ mSmallCircleRadius, getPaddingTop()
-						+ mBigCircleRadius, getPaddingLeft() + (i * 2 + 1)
+						+ mSmallCircleRadius, mCircleY, getPaddingLeft() + (i * 2 + 1)
 						* mBigCircleRadius + i * mBigLineWidth
-						+ mSmallCircleRadius + mSmallLineWidth, getPaddingTop()
-						+ mBigCircleRadius, mPaint);
+						+ mSmallCircleRadius + mSmallLineWidth, mCircleY, mPaint);
 			}
 		}
 		// 除去已完成的圆+线组合，还剩部分
@@ -283,10 +334,10 @@ public class HorizontalFlowChartView extends View {
 			// 画扇形
 			canvas.drawArc(new RectF(getPaddingLeft() + mFinish
 					* (2 * mBigCircleRadius + mBigLineWidth) + mBigCircleRadius
-					- mSmallCircleRadius, getPaddingTop() + mBigCircleRadius
+					- mSmallCircleRadius, mCircleY
 					- mSmallCircleRadius, getPaddingLeft() + mFinish
 					* (2 * mBigCircleRadius + mBigLineWidth) + mBigCircleRadius
-					+ mSmallCircleRadius, getPaddingTop() + mBigCircleRadius
+					+ mSmallCircleRadius, mCircleY
 					+ mSmallCircleRadius), 180 - mUnFinish, 2 * mUnFinish,
 					false, mPaint);
 		}
@@ -296,16 +347,15 @@ public class HorizontalFlowChartView extends View {
 			canvas.drawCircle(
 					getPaddingLeft() + mFinish
 							* (2 * mBigCircleRadius + mBigLineWidth)
-							+ mBigCircleRadius, getPaddingTop()
-							+ mBigCircleRadius, mSmallCircleRadius, mPaint);
+							+ mBigCircleRadius, mCircleY, mSmallCircleRadius, mPaint);
 			// 画线
 			canvas.drawLine(getPaddingLeft() + mFinish
 					* (2 * mBigCircleRadius + mBigLineWidth) + mBigCircleRadius
-					+ mSmallCircleRadius, getPaddingTop() + mBigCircleRadius,
+					+ mSmallCircleRadius, mCircleY,
 					getPaddingLeft() + mFinish
 							* (2 * mBigCircleRadius + mBigLineWidth)
 							+ mBigCircleRadius + mSmallCircleRadius + mUnFinish
-							- 180, getPaddingTop() + mBigCircleRadius, mPaint);
+							- 180, mCircleY, mPaint);
 		}
 	}
 
@@ -319,8 +369,7 @@ public class HorizontalFlowChartView extends View {
 				float startWidth = getPaddingLeft() + i * 2 * mBigCircleRadius
 						- mBigCircleRadius + (i - 1) * mBigLineWidth
 						- mPaint.measureText(mText[i - 1]) / 2;
-				float startHeight = getPaddingTop() + mBigCircleRadius
-						- (mPaint.descent() + mPaint.ascent()) / 2;
+				float startHeight = mTextY;
 				canvas.drawText(mText[i - 1], startWidth, startHeight, mPaint);
 			}
 		}
@@ -329,7 +378,7 @@ public class HorizontalFlowChartView extends View {
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 		if (event.getY() > getPaddingTop()
-				&& event.getY() < getPaddingTop() + 2 * mBigCircleRadius) {
+				&& event.getY() < getMeasuredHeight() - getPaddingBottom()) {
 			
 			switch (event.getAction()) {
 			// 触摸事件以及移动事件
@@ -379,20 +428,17 @@ public class HorizontalFlowChartView extends View {
 			if(onTouchCircleListener != null)
 			onTouchCircleListener
 					.onTouchCircle(num);
+			mToProgress = (num+1)*180+num*mSmallLineWidth;
+			
+			for(int i = 0 ; i <= mLoadingRate ; i++)
+			startLoading();
 		}
 		mTouchCircle = -1;
-		
-		
-		mToProgress = (num+1)*180+num*mSmallLineWidth;
-		
-		for(int i = 0 ; i <= mLoadingRate ; i++)
-		startLoading();
-		
 	}
 
 	// dp to px
 	protected int dp2px(int dpVal) {
-		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
 				dpVal, getResources().getDisplayMetrics());
 	}
 

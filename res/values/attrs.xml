@@ -15,6 +15,12 @@
         <attr name="text_size" format="dimension|reference"/>
         <attr name="touch_circle_color" format="color|reference"/>
 		<attr name="loading_rate" format="integer"/>        
+		<attr name="text_gravity" format="enum">
+		    <enum name="CENTER" value="0"/>
+		    <enum name="BOTTOM"  value="1"/>
+		    <enum name="TOP" value="2"/>
+		</attr>
+		<attr name="text_offset" format="dimension|reference"/>
     </declare-styleable>
     
 </resources>

@@ -16,6 +16,8 @@
         horizontalflowchart:small_line_height="5dp"
         horizontalflowchart:has_text="true"
 		horizontalflowchart:text_size="12sp"
+		horizontalflowchart:text_color="#424b50"
+		horizontalflowchart:text_gravity="BOTTOM"
 		horizontalflowchart:loading_rate="15"
         />
 
