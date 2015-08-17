@@ -3,7 +3,7 @@ This is a view called HorizontalFlowChart for android application.<br>
 You can use it easy to create a horizontal flow chart in you project.<br>
 
 ![](https://raw.githubusercontent.com/whichname/HorizontalFlowChart/master/_20150817_230731.JPG)
-
+<br>
 USING
 ------
 ###PREPARE
@@ -21,8 +21,8 @@ USING
     >
 </LinearLayout>
 ```
-
-
+<br>
+<br>
 ###XML
 HorizontalFlowChart provide 15 user-defined attributes,including the loading rate,the text color,the text offset and etc.<br>
 #####All the attributes<br>
@@ -44,7 +44,7 @@ HorizontalFlowChart provide 15 user-defined attributes,including the loading rat
   * `TOP`
 * `text_offset`: the offset of the text in HorizontalFlowChart
 * `touch_circle_color`: the color of the circles when the user is touching
-* `loading_rate`: the loading rate when this HorizontalFlowChart is loading,it must be an `Integer`
+* `loading_rate`: the loading rate when this HorizontalFlowChart is loading,it must be an `Integer`<br>
 
 #####EXAMPLE
 ```Xml
@@ -70,13 +70,15 @@ HorizontalFlowChart provide 15 user-defined attributes,including the loading rat
         horizontalflowchart:loading_rate="15"
         />
  ```
-
+<br>
+<br>
 ###JAVA
 In .JAVA file,you can:<br>
 set the text of each circle by String[]<br>
 set the num of the circle which has Loaded last<br>
 set the rate of loading<br>
 set OnTouchCircleListener for callback<br>
+
 #####EXAMPLE
 ```Java
 HorizontalFlowChartView horizontalflowchart =(HorizontalFlowChartView) findViewById(R.id.horizontalflowchart);
@@ -91,15 +93,18 @@ HorizontalFlowChartView horizontalflowchart =(HorizontalFlowChartView) findViewB
 			
 		});
 ```
-
+<br>
+<br>
 ###INTERFACE
 ```Java
 public interface OnTouchCircleListener {
 		public void onTouchCircle(int mCircleNum);//mCircleNum is the num of the circle the user has touched,from 0
 	}
 ```
-
+<br>
+<br>
 ###If you has any questions or suggestions,please email me 
+<br>
 ####:email: wzm625278436@qq.com
 <br>
 ###Thanks for your read!!!
