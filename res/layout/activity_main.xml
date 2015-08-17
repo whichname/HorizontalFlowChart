@@ -15,11 +15,15 @@
         horizontalflowchart:small_circle_radius="25dp"
         horizontalflowchart:big_line_width="33dp"
         horizontalflowchart:big_line_height="10dp"
+        horizontalflowchart:big_color="#c0c0c0"
+        horizontalflowchart:small_color="#789262"
         horizontalflowchart:small_line_height="5dp"
         horizontalflowchart:has_text="true"
 		horizontalflowchart:text_size="12sp"
 		horizontalflowchart:text_color="#424b50"
+		horizontalflowchart:text_offset="15dp"
 		horizontalflowchart:text_gravity="BOTTOM"
+		horizontalflowchart:touch_circle_color="#424b50"
 		horizontalflowchart:loading_rate="15"
         />
 

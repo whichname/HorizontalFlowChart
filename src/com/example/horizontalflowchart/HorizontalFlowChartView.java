@@ -192,7 +192,7 @@ public class HorizontalFlowChartView extends View {
 				mBigCircleRadius = (int) Math.min(mRealWidth/(3*mCircleSum-1), (mRealHeight-(mPaint.descent() - mPaint.ascent())-mTextOffset)/2);
 			//获得圆心坐标
 			mCircleY = getPaddingTop() + mBigCircleRadius;
-			mTextY = mCircleY + mBigCircleRadius +mTextOffset +(mPaint.descent() - mPaint.ascent()) ;
+			mTextY = mCircleY + mBigCircleRadius +mTextOffset +(mPaint.descent() - mPaint.ascent())/2 ;
 			break;
 		case TEXT_GRAVITY_TOP:
 			//以该view的大小以及圆的数量和文本偏移获得默认的外圆半径
