@@ -1,12 +1,14 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:horizontalflowchart="http://schemas.android.com/apk/res/com.example.horizontalflowchart"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
+    android:layout_height="match_parent" 
+    android:orientation="vertical"
+    >
+    
     <com.example.horizontalflowchart.HorizontalFlowChartView
         android:id="@+id/horizontalflowchart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="100dp"
         android:padding="15dp" 
         horizontalflowchart:circle_sum="4"
         horizontalflowchart:big_circle_radius="30dp"
@@ -21,4 +23,32 @@
 		horizontalflowchart:loading_rate="15"
         />
 
-</RelativeLayout>
+    <com.example.horizontalflowchart.HorizontalFlowChartView
+        android:id="@+id/horizontalflowchart1"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:padding="15dp" 
+        horizontalflowchart:big_circle_radius="45dip"
+        horizontalflowchart:small_circle_radius="45dip"
+        horizontalflowchart:big_line_height="15dip"
+        horizontalflowchart:small_line_height="15dip"
+        horizontalflowchart:big_color="#cccccc"
+        horizontalflowchart:small_color="#0075a9"
+        />
+    
+    <com.example.horizontalflowchart.HorizontalFlowChartView 
+        android:id="@+id/horizontalflowchart2"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        horizontalflowchart:circle_sum="4"
+        horizontalflowchart:text_color="#424b50"
+        horizontalflowchart:text_size="10sp"
+        horizontalflowchart:text_gravity="TOP"
+        horizontalflowchart:text_offset="20dp"
+        horizontalflowchart:small_color="#424b50"
+        />
+    
+        
+    
+
+</LinearLayout>
