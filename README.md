@@ -74,10 +74,10 @@ HorizontalFlowChart provide 15 user-defined attributes,including the loading rat
 <br>
 ###JAVA
 In .JAVA file,you can:<br>
-set the text of each circle by String[]<br>
-set the num of the circle which has Loaded last<br>
-set the rate of loading<br>
-set OnTouchCircleListener for callback<br>
+* `set the text of each circle by String[]`<br>
+* `set the num of the circle which has Loaded last`<br>
+* `set the rate of loading`<br>
+* `set OnTouchCircleListener for callback`<br>
 
 #####EXAMPLE
 ```Java
