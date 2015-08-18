@@ -24,7 +24,7 @@ USING
 <br>
 <br>
 ###XML
-HorizontalFlowChart provide 15 user-defined attributes,including the loading rate,the text color,the text offset and etc.<br>
+HorizontalFlowChart provide 15 user-defined attributes,including the loading rate,text color,text offset and etc.<br>
 #####All the attributes<br>
 * `circle_sum`: how many circles this HorizontalFlowChart has
 * `big_circle_radius`: the radius of the big circle in this HorizontalFlowChart
