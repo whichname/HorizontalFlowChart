@@ -103,7 +103,7 @@ public interface OnTouchCircleListener {
 ```
 <br>
 <br>
-###If you has any questions or suggestions,please email me 
+###If you have any questions or suggestions,please email me 
 <br>
 ####:email: wzm625278436@qq.com
 <br>
