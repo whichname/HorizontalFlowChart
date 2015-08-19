@@ -111,5 +111,5 @@ public interface OnTouchCircleListener {
 ###:smile::smile::smile:Welcome to Star or Fork!!!:smile::smile::smile:
 <br>
 <br>
-##### @author by wuzhiming(whichname)
+##### @author : wuzhiming(whichname)
 ##### @time : 2015/8/18
