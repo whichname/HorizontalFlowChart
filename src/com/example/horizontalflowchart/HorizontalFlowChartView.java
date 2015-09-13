@@ -39,6 +39,8 @@ public class HorizontalFlowChartView extends View {
 
 	// 默认触摸时该圆的颜色
 	private final int DEFAULT_TOUCH_CIRCLE_COLOR = Color.parseColor("#555555");
+	//默认可触摸
+	private final boolean DEFAULT_TOUCHABLE = true;
 	
 	//默认动画速率
 	private final int DEFAULT_LOADING_RATE = 0;
@@ -94,11 +96,19 @@ public class HorizontalFlowChartView extends View {
 	//当前进度的目标值
 	private int mToProgress = mProgress;
 	
+	//当前进度到第几个圆
+	private int mNowCircle = -1;
+	
+	
 	//设置当前进度
 	public void setNowCircle(int  num)
 	{
+		if(num < 0)
+			return;
+		mNowCircle = num;
 		mProgress = 180*num + mSmallLineWidth*(num-1);
 		mToProgress = mProgress;
+		invalidate();
 	}
 
 	// 圆内是否有文本
@@ -112,7 +122,15 @@ public class HorizontalFlowChartView extends View {
 	//文本偏移
 	private int mTextOffset;
 	//文本的Y轴坐标
-	private float mTextY;;
+	private float mTextY;
+	
+	//是否可触摸
+	private boolean mTouchable;
+	//设置是否可触摸
+	public void setTouchable(boolean mTouchable)
+	{
+		this.mTouchable = mTouchable;
+	}
 
 	// 触摸事件中，圆的顺序
 	private int mTouchCircle = -1;
@@ -219,6 +237,10 @@ public class HorizontalFlowChartView extends View {
 
 				// 当前进度的最大值
 				mMaxProgress = 180 * mCircleSum + mSmallLineWidth * (mCircleSum - 1);
+				
+				//初始化已绘制的圆
+				if(mNowCircle >= 0)
+					setNowCircle(mNowCircle);
 		
 	}
 	
@@ -250,6 +272,8 @@ public class HorizontalFlowChartView extends View {
 		
 		mTextGravity = typedArray.getInteger(R.styleable.HorizontalFlowChartView_text_gravity, DEFAULT_TEXT_GRAVITY);
 		mTextOffset = (int) typedArray.getDimension(R.styleable.HorizontalFlowChartView_text_offset, dp2px(DEFAULT_TEXT_OFFSET));
+		
+		mTouchable = typedArray.getBoolean(R.styleable.HorizontalFlowChartView_touchable, DEFAULT_TOUCHABLE);
 		
 		typedArray.recycle();
 	}
@@ -377,6 +401,12 @@ public class HorizontalFlowChartView extends View {
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
+		//若不可触摸
+		if(!mTouchable)
+		{
+			return false;
+		}
+		//若可触摸
 		if (event.getY() > getPaddingTop()
 				&& event.getY() < getMeasuredHeight() - getPaddingBottom()) {
 			
@@ -466,13 +496,11 @@ public class HorizontalFlowChartView extends View {
 			switch(msg.what)
 			{
 			case 0:
-			case 1:
 				mProgress ++;
 				invalidate();
 				startLoading();
 				break;
-			case 2:
-			case 3:
+			case 1:
 				mProgress--;
 				invalidate();
 				startLoading();
@@ -488,30 +516,12 @@ public class HorizontalFlowChartView extends View {
 		//向右加载动画
 		if(mProgress < mToProgress)
 		{
-			//圆圈内
-			if(mProgress%(180+ mSmallLineWidth)<=180)
-			{
 				mHandler.sendEmptyMessageDelayed(0, 0);
-			}
-			//线段内
-			else
-			{
-				mHandler.sendEmptyMessageDelayed(1, 0);
-			}
 		}
 		//向左加载
 		else if (mProgress > mToProgress)
 		{
-			//圆圈内
-			if(mProgress%(180+ mSmallLineWidth)<=180)
-			{
-				mHandler.sendEmptyMessageDelayed(2, 0);
-			}
-			//线段内
-			else
-			{
-				mHandler.sendEmptyMessageDelayed(3, 0);
-			}
+				mHandler.sendEmptyMessageDelayed(1, 0);
 		}
 	}
 	

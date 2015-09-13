@@ -21,6 +21,7 @@
 		    <enum name="TOP" value="2"/>
 		</attr>
 		<attr name="text_offset" format="dimension|reference"/>
+		<attr name="touchable" format="boolean"/>
     </declare-styleable>
     
 </resources>
