@@ -6,11 +6,12 @@ You can use it easy to create a horizontal flow chart in you project.<br>
 <br>
 USING
 ------
-###PREPARE
+### PREPARE
 * If you want to use the HorizontalFlowChart in your android application , you must copy two files`(HorizontalFlowChart.java,attrs.xml)` to you project.<br>
 * Add the `namespace` in your layout file.<br>
 
-#####EXAMPLE
+##### EXAMPLE
+
 ```Xml
 <LinearLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -23,9 +24,9 @@ USING
 ```
 <br>
 <br>
-###XML
+### XML
 HorizontalFlowChart provide 15 user-defined attributes,including the loading rate,text color,text offset and etc.<br>
-#####All the attributes<br>
+##### All the attributes<br>
 * `circle_sum`: how many circles this HorizontalFlowChart has
 * `big_circle_radius`: the radius of the big circle in this HorizontalFlowChart
 * `small_circle_radius`: the radius of the small circle in this HorizontalFlowChart
@@ -46,7 +47,8 @@ HorizontalFlowChart provide 15 user-defined attributes,including the loading rat
 * `touch_circle_color`: the color of the circles when the user is touching
 * `loading_rate`: the loading rate when this HorizontalFlowChart is loading,it must be an `Integer`<br>
 
-#####EXAMPLE
+##### EXAMPLE
+
 ```Xml
 <com.example.horizontalflowchart.HorizontalFlowChartView
         android:id="@+id/horizontalflowchart"
@@ -72,14 +74,16 @@ HorizontalFlowChart provide 15 user-defined attributes,including the loading rat
  ```
 <br>
 <br>
-###JAVA
+### JAVA
+
 In .JAVA file,you can:<br>
 * `set the text of each circle by String[]`<br>
 * `set the num of the circle which has Loaded last`<br>
 * `set the rate of loading`<br>
 * `set OnTouchCircleListener for callback`<br>
 
-#####EXAMPLE
+##### EXAMPLE
+
 ```Java
 HorizontalFlowChartView horizontalflowchart =(HorizontalFlowChartView) findViewById(R.id.horizontalflowchart);
 		horizontalflowchart.setText(new String[]{"初始","开工","收工","回到基地"});
@@ -95,32 +99,35 @@ HorizontalFlowChartView horizontalflowchart =(HorizontalFlowChartView) findViewB
 ```
 <br>
 <br>
-###INTERFACE
+### INTERFACE
 ```Java
 public interface OnTouchCircleListener {
 		public void onTouchCircle(int mCircleNum);//mCircleNum is the num of the circle the user has touched,from 0
 	}
 ```
 <br>
-##2015-9-13 COMMIT
-#####Now you can set the HorizontalFlowChart touchable.
+## 2015-9-13 COMMIT
+##### Now you can set the HorizontalFlowChart touchable.
 <br>
 Use in xml:
+
 ```Xml
 horizontalflowchart:touchable="true|false"
 ```
 Use in java:
+
 ```Java
 horizontalFlowChart.setTouchable(true|false);
 ```
-#####And also,i had fixed some bugs.
+
+##### And also,i had fixed some bugs.
 <br>
-###If you have any questions or suggestions,please email me 
+### If you have any questions or suggestions,please email me 
 <br>
-####:email: wzm625278436@qq.com
+#### :email: wzm625278436@qq.com
 <br>
-###:smile::smile::smile:Thanks for your reading!!!:smile::smile::smile:
-###:smile::smile::smile:Welcome to Star or Fork!!!:smile::smile::smile:
+### :smile::smile::smile:Thanks for your reading!!!:smile::smile::smile:
+### :smile::smile::smile:Welcome to Star or Fork!!!:smile::smile::smile:
 <br>
 <br>
 ##### @author : wuzhiming(whichname)
