@@ -106,8 +106,10 @@ public interface OnTouchCircleListener {
 	}
 ```
 <br>
+
 ## 2015-9-13 COMMIT
 ##### Now you can set the HorizontalFlowChart touchable.
+
 <br>
 Use in xml:
 
@@ -121,14 +123,23 @@ horizontalFlowChart.setTouchable(true|false);
 ```
 
 ##### And also,i had fixed some bugs.
+
 <br>
-### If you have any questions or suggestions,please email me 
+
+### If you have any questions or suggestions,please email me
+
 <br>
+
 #### :email: wzm625278436@qq.com
+
 <br>
+
 ### :smile::smile::smile:Thanks for your reading!!!:smile::smile::smile:
 ### :smile::smile::smile:Welcome to Star or Fork!!!:smile::smile::smile:
+
 <br>
+
 <br>
+
 ##### @author : wuzhiming(whichname)
 ##### @time : 2015/8/18
