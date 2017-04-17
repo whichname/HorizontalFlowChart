@@ -1,9 +1,17 @@
 # HorizontalFlowChart
-This is a view called HorizontalFlowChart for android application.<br>
-You can use it easy to create a horizontal flow chart in you project.<br>
+This is a view called HorizontalFlowChart for android application.
+
+<br>
+
+You can use it easy to create a horizontal flow chart in you project.
+
+<br>
+
 
 ![](https://raw.githubusercontent.com/whichname/HorizontalFlowChart/master/_20150817_230731.JPG)
+
 <br>
+
 USING
 ------
 ### PREPARE
@@ -22,11 +30,17 @@ USING
     >
 </LinearLayout>
 ```
+
 <br>
+
 <br>
+
 ### XML
 HorizontalFlowChart provide 15 user-defined attributes,including the loading rate,text color,text offset and etc.<br>
-##### All the attributes<br>
+##### All the attributes
+
+<br>
+
 * `circle_sum`: how many circles this HorizontalFlowChart has
 * `big_circle_radius`: the radius of the big circle in this HorizontalFlowChart
 * `small_circle_radius`: the radius of the small circle in this HorizontalFlowChart
@@ -72,15 +86,33 @@ HorizontalFlowChart provide 15 user-defined attributes,including the loading rat
         horizontalflowchart:loading_rate="15"
         />
  ```
+ 
 <br>
+
 <br>
+
 ### JAVA
 
-In .JAVA file,you can:<br>
-* `set the text of each circle by String[]`<br>
-* `set the num of the circle which has Loaded last`<br>
-* `set the rate of loading`<br>
-* `set OnTouchCircleListener for callback`<br>
+In .JAVA file,you can:
+
+<br>
+
+* `set the text of each circle by String[]`
+
+<br>
+
+* `set the num of the circle which has Loaded last`
+
+<br>
+
+* `set the rate of loading`
+
+<br>
+
+* `set OnTouchCircleListener for callback`
+
+<br>
+
 
 ##### EXAMPLE
 
@@ -97,20 +129,25 @@ HorizontalFlowChartView horizontalflowchart =(HorizontalFlowChartView) findViewB
 			
 		});
 ```
+
 <br>
+
 <br>
+
 ### INTERFACE
 ```Java
 public interface OnTouchCircleListener {
 		public void onTouchCircle(int mCircleNum);//mCircleNum is the num of the circle the user has touched,from 0
 	}
 ```
+
 <br>
 
 ## 2015-9-13 COMMIT
 ##### Now you can set the HorizontalFlowChart touchable.
 
 <br>
+
 Use in xml:
 
 ```Xml
